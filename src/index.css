@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 3%;
+    --foreground: 0 0% 100%;
+    --card: 240 15% 8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 186 100% 50%;
+    --primary-foreground: 240 20% 3%;
+    --secondary: 270 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 186 100% 50%;
+    --accent-foreground: 240 20% 3%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 186 100% 50%;
+    --radius: 0.75rem;
+    
+    /* Custom Colors */
+    --neon-cyan: #00F0FF;
+    --neon-purple: #7000FF;
+    --deep-void: #05050A;
+    --surface: #0F0F16;
+    --text-muted: #A0A0B0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#05050A] text-white antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl;
+    box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-card-strong {
+    @apply backdrop-blur-2xl bg-white/10 border border-white/20 rounded-2xl;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Neon Glow Effects */
+  .neon-glow-cyan {
+    box-shadow: 
+      0 0 5px var(--neon-cyan),
+      0 0 10px var(--neon-cyan),
+      0 0 20px var(--neon-cyan),
+      0 0 40px rgba(0, 240, 255, 0.3);
+  }
+  
+  .neon-glow-purple {
+    box-shadow: 
+      0 0 5px var(--neon-purple),
+      0 0 10px var(--neon-purple),
+      0 0 20px var(--neon-purple),
+      0 0 40px rgba(112, 0, 255, 0.3);
+  }
+  
+  .neon-text-cyan {
+    text-shadow: 
+      0 0 5px var(--neon-cyan),
+      0 0 10px var(--neon-cyan),
+      0 0 20px rgba(0, 240, 255, 0.5);
+  }
+  
+  .neon-text-purple {
+    text-shadow: 
+      0 0 5px var(--neon-purple),
+      0 0 10px var(--neon-purple),
+      0 0 20px rgba(112, 0, 255, 0.5);
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+  }
+  
+  /* Button Styles */
+  .btn-primary {
+    @apply relative px-8 py-4 rounded-full font-semibold text-sm tracking-wider uppercase overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, #00c8d6 100%);
+    color: var(--deep-void);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 10px 30px rgba(0, 240, 255, 0.4),
+      0 0 20px rgba(0, 240, 255, 0.3);
+  }
+  
+  .btn-glass {
+    @apply relative px-8 py-4 rounded-full font-semibold text-sm tracking-wider uppercase overflow-hidden transition-all duration-300 backdrop-blur-xl bg-white/5 border border-white/20 text-white;
+  }
+  
+  .btn-glass:hover {
+    @apply bg-white/10 border-white/40;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Section Container */
+  .section-container {
+    @apply w-full min-h-screen relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+  
+  /* Scroll Progress Bar */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-1 z-[100];
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--deep-void);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+    border-radius: 3px;
+  }
+  
+  /* Magnetic Button Effect Base */
+  .magnetic-btn {
+    @apply relative inline-flex items-center justify-center transition-transform duration-100 ease-out;
+  }
+  
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+  
+  /* Pulse Glow Animation */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
+    }
+    50% { 
+      box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* Scanline Effect */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 240, 255, 0.03) 2px,
+      rgba(0, 240, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* Grid Background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Radial Gradient Overlay */
+  .radial-glow {
+    background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+  }
+}
+
+@layer utilities {
+  /* Perspective for 3D effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Text stroke */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    color: transparent;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
